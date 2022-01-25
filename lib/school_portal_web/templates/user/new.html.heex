@@ -1,0 +1,9 @@
+ <a href="" class="phx-logo">
+  <img src={Routes.static_path(@conn, "/images/reg.png")} alt="Phoenix Framework Logo"/>
+ </a>
+
+ <h1>New Registration</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.user_path(@conn, :create)) %>
+
+<span><%= link "Back", to: Routes.user_path(@conn, :index) %></span>
