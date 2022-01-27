@@ -14,10 +14,23 @@ defmodule SchoolPortalWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug SchoolPortal.Auth.Pipeline
+  end
+
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
   scope "/", SchoolPortalWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+
+
+    get "/login", SessionController, :index
+    post "/login", SessionController, :login
+    get "/logout", SessionController, :logout
 
     resources "/users", UserController
   end

@@ -72,3 +72,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :school_portal, SchoolPortal.Auth.Guardian,
+  issuer: "school_portal",
+  secret_key: "R35ToFg0n+aVCZZ/VEjueKWWhOY1jwWgdudXnj6okTyz2oB0ukozJLg0b/elgtzm"
