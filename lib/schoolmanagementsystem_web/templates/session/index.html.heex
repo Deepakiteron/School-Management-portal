@@ -1,0 +1,24 @@
+<div class="login">
+<h2>Login Page</h2>
+<%= form_for @changeset, @action, fn f -> %>
+
+    <%= label f, :email, class: "control-label" %>
+    <%= text_input f, :email, class: "form-control" %>
+    <%= error_tag f, :email %>
+ 
+
+
+    <%= label f, :password, class: "control-label" %>
+    <%= password_input f, :password, class: "form-control" %>
+    <%= error_tag f, :password %>
+  
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+    
+
+    
+  </div>
+<% end %>
+ <p>Don't have an account? <%= link "Sign Up", to: Routes.user_path(@conn, :new)%> </p>
+</div>

@@ -14,10 +14,14 @@
       <section class="container">
         <nav>
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
+ 
+          <%= if logged_in?(@conn) do %>
+            <%= current_user(@conn).email%>
+            <li><span><%= link "Logout", to: Routes.session_path(@conn, :logout)%></span></li>
+          <% else %>
+            <li><span><%= link "Login", to: Routes.session_path(@conn, :login)%></span></li>
+             <li><span><%= link "Register", to: Routes.user_path(@conn, :new)%></span></li>
+          <% end %>
           </ul>
         </nav>
         <a href="https://phoenixframework.org/" class="phx-logo">

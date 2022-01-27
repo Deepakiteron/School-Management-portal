@@ -47,6 +47,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :schoolmanagementsystem, Schoolmanagementsystem.Auth.Guardian,
+  issuer: "schoolmanagementsystem", # Name of your app/company/product
+  secret_key: "ig5aoktYs0yYweAV+EXo9C/PTgA9NgfMhCTzqALjeI2dUMZbZi4S0tY8zSlHRYt5"
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"

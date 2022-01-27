@@ -38,6 +38,7 @@ defmodule SchoolmanagementsystemWeb do
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
       # Include shared imports and aliases for views
+      import Schoolmanagementsystem.Auth, only: [current_user: 1, logged_in?: 1]
       unquote(view_helpers())
     end
   end
