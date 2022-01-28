@@ -21,14 +21,14 @@ defmodule Schoolmanagementsystem.Users.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:first_name, :last_name, :age, :gender, :phone_number, :email, :password, :address, :type])
-    |> validate_required([:first_name, :last_name, :age, :gender, :phone_number, :email, :password, :address, :type])
+    |> cast(attrs, [:first_name, :last_name, :age, :gender, :phone_number, :email, :password, :address, :role])
+    |> validate_required([:first_name, :last_name, :age, :gender, :phone_number, :email, :password, :address, :role])
     |> validate_length(:first_name, min: 1, max: 20)
     |> validate_length(:last_name, min: 4, max: 20)
     |> validate_inclusion(:age, 5..50)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 4)
-    |> validate_inclusion(:role, ~w(user admin))
+    |> validate_inclusion(:role, ~w(admin))
     |> unique_constraint(:email)
     |> put_pass_hash()
   end

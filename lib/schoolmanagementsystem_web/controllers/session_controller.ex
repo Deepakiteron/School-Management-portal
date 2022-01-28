@@ -69,15 +69,15 @@ defmodule SchoolmanagementsystemWeb.SessionController do
   #       |> put_flash(:error, to_string(reason))
   #       |> put_status(401)
   #       |> new(%{})
-  #   end
-  end
+  # #   end
+  # end
 
-  def logout(conn, _) do
-    conn
-    |> delete_session(:current_user)
-    |> Guardian.Plug.sign_out()
-    |> redirect(to: "/login")
-  end
+  # def logout(conn, _) do
+  #   conn
+  #   |> delete_session(:current_user)
+  #   |> Guardian.Plug.sign_out()
+  #   |> redirect(to: "/login")
+  # end
 
 
 end

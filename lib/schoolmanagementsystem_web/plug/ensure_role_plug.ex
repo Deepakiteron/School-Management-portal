@@ -6,6 +6,8 @@ defmodule SchoolmanagementsystemWeb.Plug.EnsureRolePlug do
   alias Schoolmanagementsystem.Auth.Guardian
   alias Schoolmanagementsystem.Users.User
   alias Phoenix.Controller
+  alias Plug.Conn
+  alias Pow.Plug
 
   @admin "admin"
   @tecaher "teacher"
@@ -16,7 +18,7 @@ defmodule SchoolmanagementsystemWeb.Plug.EnsureRolePlug do
 
   @spec call(Conn.t(), atom() | binary() | [atom()] | [binary()]) :: Conn.t()
 
-  def call(conn, role) do
+  def call(conn, roles) do
     conn
     |> Guardian.Plug.current_resource()
     |> has_role?(roles)
