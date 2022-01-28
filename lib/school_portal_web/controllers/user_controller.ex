@@ -3,6 +3,8 @@ defmodule SchoolPortalWeb.UserController do
 
   alias SchoolPortal.Users
   alias SchoolPortal.Users.User
+  alias SchoolPortal.Mail
+  alias SchoolPortal.Mailer
 
   def index(conn, _params) do
     users = Users.list_users()
@@ -17,9 +19,10 @@ defmodule SchoolPortalWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     case Users.create_user(user_params) do
       {:ok, user} ->
+        Mail.welcome(user) |>Mailer.deliver()
         conn
-        |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> put_flash(:info, "Registration successfully completed!.")
+        |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

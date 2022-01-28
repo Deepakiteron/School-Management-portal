@@ -4,5 +4,7 @@
   <article class="column">
      <span><%= link "New Registration", to: Routes.user_path(@conn, :new) %></span><br>
       <span><%= link "Log in", to: Routes.session_path(@conn, :index) %></span>
+      <span><%= link "New Admin", to: Routes.admin_path(@conn, :new) %></span>
+
   </article>
 </section>

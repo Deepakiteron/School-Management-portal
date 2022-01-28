@@ -33,6 +33,8 @@ defmodule SchoolPortalWeb.Router do
     get "/logout", SessionController, :logout
 
     resources "/users", UserController
+
+    resources "/admins", AdminController
   end
 
   # Other scopes may use custom stacks.
