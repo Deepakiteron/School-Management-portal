@@ -19,7 +19,7 @@ defmodule SchoolPortalWeb.AdminController do
       {:ok, admin} ->
         conn
         |> put_flash(:info, "Admin created successfully.")
-        |> redirect(to: Routes.admin_path(conn, :show, admin))
+        |> redirect(to: Routes.page_path(conn, :index))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

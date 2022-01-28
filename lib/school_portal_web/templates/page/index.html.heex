@@ -2,9 +2,9 @@
 
 <section class="row">
   <article class="column">
-     <span><%= link "New Registration", to: Routes.user_path(@conn, :new) %></span><br>
-      <span><%= link "Log in", to: Routes.session_path(@conn, :index) %></span>
-      <span><%= link "New Admin", to: Routes.admin_path(@conn, :new) %></span>
-
+        <span><%= link "New Registration", to: Routes.user_path(@conn, :new) %></span><br>
+        <span><%= link "Log in", to: Routes.session_path(@conn, :index) %></span><br>
+        <span><%= link "NewAdmin", to: Routes.admin_path(@conn, :new) %></span><br>
+        <span><%= link "AdminLog in", to: Routes.session_admin_path(@conn, :index) %></span>
   </article>
 </section>

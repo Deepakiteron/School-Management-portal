@@ -10,5 +10,8 @@ defmodule SchoolPortal.Repo.Migrations.CreateAdmins do
 
       timestamps()
     end
+
+    create unique_index(:admins, [:email])
+
   end
 end
