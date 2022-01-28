@@ -1,8 +1,11 @@
 defmodule SchoolmanagementsystemWeb.UserController do
   use SchoolmanagementsystemWeb, :controller
+  plug SchoolmanagementsystemWeb.Plug.EnsureRolePlug, :admin
 
   alias Schoolmanagementsystem.Users
   alias Schoolmanagementsystem.Users.User
+  alias Schoolmanagementsystem.Email
+  alias Schoolmanagementsystem.Mailer
 
   def index(conn, _params) do
     registers = Users.list_registers()
@@ -17,6 +20,7 @@ defmodule SchoolmanagementsystemWeb.UserController do
   def create(conn, %{"user" => user_params}) do
     case Users.create_user(user_params) do
       {:ok, user} ->
+        Email.user_request_email(user) |> Mailer.deliver()
         conn
         |> put_flash(:info, "User created successfully.")
         |> redirect(to: Routes.user_path(conn, :show, user))

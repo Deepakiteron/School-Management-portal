@@ -14,6 +14,10 @@ defmodule SchoolmanagementsystemWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug SchoolmanagementsystemWeb.Plug.EnsureRolePlug, :admin
+  end
+
   pipeline :auth do
     plug Schoolmanagementsystem.Auth.Pipeline
   end
@@ -27,9 +31,17 @@ defmodule SchoolmanagementsystemWeb.Router do
 
     get "/", PageController, :index
     resources "/registers", UserController
+    resources "/admins", AdminController
     get "/login", SessionController, :new
     post "/login", SessionController, :login
     get "/logout", SessionController, :logout
+  end
+
+  scope "/admin" do
+    pipe_through [:browser, :admin]
+    put("/teacher/:userID", UserController, :teacher)
+    put("/admin/:userID", AdminController, :admin)
+    put("/student/:userID", UserController, :student)
   end
 
   # Other scopes may use custom stacks.
@@ -59,7 +71,7 @@ defmodule SchoolmanagementsystemWeb.Router do
   # node running the Phoenix server.
   if Mix.env() == :dev do
     scope "/dev" do
-      pipe_through :browser
+      pipe_through [:browser]
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end

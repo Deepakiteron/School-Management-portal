@@ -8,6 +8,9 @@ defmodule Schoolmanagementsystem.Users do
 
   alias Schoolmanagementsystem.Users.User
 
+
+  @type t :: %User{}
+
   @doc """
   Returns the list of registers.
 
@@ -101,4 +104,24 @@ defmodule Schoolmanagementsystem.Users do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  @spec create_admin(map()) :: {:ok, t()} | {:error, Ecto.Changeset.t()}
+  def create_admin(params) do
+    %User{}
+    |> User.changeset(params)
+    |> User.changeset_role(%{type: "admin"})
+    |> Repo.insert()
+  end
+
+  @spec set_admin_role(t()) :: {:ok, t()} | {:error, Ecto.Changeset.t()}
+  def set_admin_role(user) do
+    user
+    |> User.changeset_role(%{type: "admin"})
+    |> Repo.update()
+  end
+
+  @spec is_admin?(t()) :: boolean()
+  def is_admin?(%{type: "admin"}), do: true
+  def is_admin?(_any), do: false
+
 end

@@ -13,7 +13,7 @@ defmodule Schoolmanagementsystem.Users.User do
     field :last_name, :string
     field :password, :string
     field :phone_number, :string
-    field :type, :string
+    field :role, :string
 
     timestamps()
   end
@@ -28,6 +28,7 @@ defmodule Schoolmanagementsystem.Users.User do
     |> validate_inclusion(:age, 5..50)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 4)
+    |> validate_inclusion(:role, ~w(user admin))
     |> unique_constraint(:email)
     |> put_pass_hash()
   end

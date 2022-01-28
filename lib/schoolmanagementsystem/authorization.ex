@@ -1,35 +1,26 @@
 defmodule Schoolmanagementsystem.Authorization do
   alias __MODULE__
-  # alias Schoolmanagementsystem.Users.User
-  # alias Smsapp.Users.User
-  # alias Pow.Plug
-  # import Plug.Conn
-  defstruct roles: nil, create: %{}, read: %{}, update: %{}, delete: %{}
+  alias Schoolmanagementsystem.Users.User
 
-  def can("student" = roles) do
-    grant(roles)
+  defstruct role: nil, create: %{}, read: %{}, update: %{}, delete: %{}
+
+  def can("student" = role) do
+    grant(role)
     |> create(User)
-    # |> read(Register)
   end
 
-  def can("teacher" = roles) do
-    grant(roles)
+  def can("teacher" = role) do
+    grant(role)
     |> create(User)
-    # |> read(Register)
+    |> read(User)
   end
 
-  # def can("manager" = roles) do
-  #   grant(roles)
-  #   |> all(Register)
-  # end
-
-  def can("admin" = roles) do
-    grant(roles)
-    # |> all(Register)
+  def can("admin" = role) do
+    grant(role)
     |> all(User)
   end
 
-  def grant(roles), do: %Authorization{roles: roles}
+  def grant(role), do: %Authorization{role: role}
 
   def read(authorization, resource), do: put_action(authorization, :read, resource)
 
