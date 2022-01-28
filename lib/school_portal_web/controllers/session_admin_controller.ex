@@ -30,6 +30,7 @@ defmodule SchoolPortalWeb.SessionAdminController do
   defp login_reply({:ok, admin}, conn) do
     conn
       |> Guardian.Plug.sign_in(admin)
+      |> render("admin_view.html")
    end
   def logout(conn, _) do
     conn

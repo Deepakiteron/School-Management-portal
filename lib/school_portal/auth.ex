@@ -16,7 +16,7 @@ defmodule SchoolPortal.Auth do
   defp check_password(user, plain_text_password) do
     case Bcrypt.checkpw(plain_text_password, user.password) do
       true -> {:ok, user}
-      false -> {:error, "Incorrect  password"}
+      false -> {:error, "Incorrect password"}
     end
   end
 
@@ -25,8 +25,9 @@ defmodule SchoolPortal.Auth do
     Repo.one(query)
     |> check_admin_password(plain_text_password)
   end
-  defp check_admin_password(nil, _), do: {:error, "Incorrect password"}
+  defp check_admin_password(nil, _), do: {:error, "Incorrect email or password"}
   defp check_admin_password(admin, plain_text_password) do
+    IO.inspect(plain_text_password)
     case Bcrypt.checkpw(plain_text_password, admin.password) do
       true -> {:ok, admin}
       false -> {:error, "Incorrect password"}
