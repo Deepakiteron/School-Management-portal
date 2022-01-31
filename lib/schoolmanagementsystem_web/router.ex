@@ -15,7 +15,7 @@ defmodule SchoolmanagementsystemWeb.Router do
   end
 
   pipeline :admin do
-    plug SchoolmanagementsystemWeb.Plug.EnsureRolePlug, :admin
+    plug SchoolmanagementsystemWeb.Plug.Authorize, :admin
   end
 
   pipeline :auth do
@@ -35,15 +35,15 @@ defmodule SchoolmanagementsystemWeb.Router do
     get "/login", SessionController, :new
     post "/login", SessionController, :login
     get "/logout", SessionController, :logout
+    get "/admin-login", SessionController, :new
+    post "/admin-login", SessionController, :admin_login
+    get "/admin-logout", SessionController, :admin_logout
   end
 
-  scope "/admin" do
-    pipe_through [:browser, :admin]
-    put("/teacher/:userID", UserController, :teacher)
-    put("/admin/:userID", AdminController, :admin)
-    put("/student/:userID", UserController, :student)
-  end
-
+  # scope "/", SchoolmanagementsystemWeb do
+  #   pipe_through [:browser, :admin]
+  #   resources "/users", UserController, only: [:create, :edit, :update]
+  # end
   # Other scopes may use custom stacks.
   # scope "/api", SchoolmanagementsystemWeb do
   #   pipe_through :api

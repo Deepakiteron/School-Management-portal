@@ -3,9 +3,39 @@ defmodule SchoolmanagementsystemWeb.UserControllerTest do
 
   import Schoolmanagementsystem.UsersFixtures
 
-  @create_attrs %{address: "some address", age: 42, email: "some email", first_name: "some first_name", gender: "some gender", last_name: "some last_name", password: "some password", phone_number: "some phone_number", type: "some type"}
-  @update_attrs %{address: "some updated address", age: 43, email: "some updated email", first_name: "some updated first_name", gender: "some updated gender", last_name: "some updated last_name", password: "some updated password", phone_number: "some updated phone_number", type: "some updated type"}
-  @invalid_attrs %{address: nil, age: nil, email: nil, first_name: nil, gender: nil, last_name: nil, password: nil, phone_number: nil, type: nil}
+  @create_attrs %{
+    address: "some address",
+    age: 42,
+    email: "some email",
+    first_name: "some first_name",
+    gender: "some gender",
+    last_name: "some last_name",
+    password: "some password",
+    phone_number: "some phone_number",
+    type: "some type"
+  }
+  @update_attrs %{
+    address: "some updated address",
+    age: 43,
+    email: "some updated email",
+    first_name: "some updated first_name",
+    gender: "some updated gender",
+    last_name: "some updated last_name",
+    password: "some updated password",
+    phone_number: "some updated phone_number",
+    type: "some updated type"
+  }
+  @invalid_attrs %{
+    address: nil,
+    age: nil,
+    email: nil,
+    first_name: nil,
+    gender: nil,
+    last_name: nil,
+    password: nil,
+    phone_number: nil,
+    type: nil
+  }
 
   describe "index" do
     test "lists all registers", %{conn: conn} do

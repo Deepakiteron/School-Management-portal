@@ -16,5 +16,4 @@ defmodule Schoolmanagementsystem.Email do
     |> subject("Welcome User")
     |> html_body("<p>Thank you for registration</p>")
   end
-
 end

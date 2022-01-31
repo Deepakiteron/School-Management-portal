@@ -8,7 +8,17 @@ defmodule Schoolmanagementsystem.UsersTest do
 
     import Schoolmanagementsystem.UsersFixtures
 
-    @invalid_attrs %{address: nil, age: nil, email: nil, first_name: nil, gender: nil, last_name: nil, password: nil, phone_number: nil, type: nil}
+    @invalid_attrs %{
+      address: nil,
+      age: nil,
+      email: nil,
+      first_name: nil,
+      gender: nil,
+      last_name: nil,
+      password: nil,
+      phone_number: nil,
+      type: nil
+    }
 
     test "list_registers/0 returns all registers" do
       user = user_fixture()
@@ -21,7 +31,17 @@ defmodule Schoolmanagementsystem.UsersTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{address: "some address", age: 42, email: "some email", first_name: "some first_name", gender: "some gender", last_name: "some last_name", password: "some password", phone_number: "some phone_number", type: "some type"}
+      valid_attrs = %{
+        address: "some address",
+        age: 42,
+        email: "some email",
+        first_name: "some first_name",
+        gender: "some gender",
+        last_name: "some last_name",
+        password: "some password",
+        phone_number: "some phone_number",
+        type: "some type"
+      }
 
       assert {:ok, %User{} = user} = Users.create_user(valid_attrs)
       assert user.address == "some address"
@@ -41,7 +61,18 @@ defmodule Schoolmanagementsystem.UsersTest do
 
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
-      update_attrs = %{address: "some updated address", age: 43, email: "some updated email", first_name: "some updated first_name", gender: "some updated gender", last_name: "some updated last_name", password: "some updated password", phone_number: "some updated phone_number", type: "some updated type"}
+
+      update_attrs = %{
+        address: "some updated address",
+        age: 43,
+        email: "some updated email",
+        first_name: "some updated first_name",
+        gender: "some updated gender",
+        last_name: "some updated last_name",
+        password: "some updated password",
+        phone_number: "some updated phone_number",
+        type: "some updated type"
+      }
 
       assert {:ok, %User{} = user} = Users.update_user(user, update_attrs)
       assert user.address == "some updated address"

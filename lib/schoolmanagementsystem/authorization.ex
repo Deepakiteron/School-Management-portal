@@ -1,7 +1,7 @@
 defmodule Schoolmanagementsystem.Authorization do
   alias __MODULE__
-  alias Schoolmanagementsystem.Users.User
 
+  alias Schoolmanagementsystem.Users.User
   defstruct role: nil, create: %{}, read: %{}, update: %{}, delete: %{}
 
   def can("student" = role) do

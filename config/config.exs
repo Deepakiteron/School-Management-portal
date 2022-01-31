@@ -13,7 +13,11 @@ config :schoolmanagementsystem,
 # Configures the endpoint
 config :schoolmanagementsystem, SchoolmanagementsystemWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: SchoolmanagementsystemWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    view: SchoolmanagementsystemWeb.ErrorView,
+    accepts: ~w(html json),
+    layout: false
+  ],
   pubsub_server: Schoolmanagementsystem.PubSub,
   live_view: [signing_salt: "w+tlTtoz"]
 
@@ -48,7 +52,8 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 config :schoolmanagementsystem, Schoolmanagementsystem.Auth.Guardian,
-  issuer: "schoolmanagementsystem", # Name of your app/company/product
+  # Name of your app/company/product
+  issuer: "schoolmanagementsystem",
   secret_key: "ig5aoktYs0yYweAV+EXo9C/PTgA9NgfMhCTzqALjeI2dUMZbZi4S0tY8zSlHRYt5"
 
 # Import environment specific config. This must remain at the bottom

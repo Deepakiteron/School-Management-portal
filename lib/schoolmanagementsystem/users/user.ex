@@ -4,6 +4,8 @@ defmodule Schoolmanagementsystem.Users.User do
   alias Comeonin.Bcrypt
   alias Schoolmanagementsystem.Users.User
 
+  @roles ~w(student teacher admin)
+
   schema "registers" do
     field :address, :string
     field :age, :integer
@@ -13,7 +15,7 @@ defmodule Schoolmanagementsystem.Users.User do
     field :last_name, :string
     field :password, :string
     field :phone_number, :string
-    field :role, :string
+    field :role, :string, default: "student"
 
     timestamps()
   end
@@ -21,20 +23,41 @@ defmodule Schoolmanagementsystem.Users.User do
   @doc false
   def changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:first_name, :last_name, :age, :gender, :phone_number, :email, :password, :address, :role])
-    |> validate_required([:first_name, :last_name, :age, :gender, :phone_number, :email, :password, :address, :role])
+    |> cast(attrs, [
+      :first_name,
+      :last_name,
+      :age,
+      :gender,
+      :phone_number,
+      :email,
+      :password,
+      :address,
+      :role
+    ])
+    |> validate_required([
+      :first_name,
+      :last_name,
+      :age,
+      :gender,
+      :phone_number,
+      :email,
+      :password,
+      :address,
+      :role
+    ])
     |> validate_length(:first_name, min: 1, max: 20)
     |> validate_length(:last_name, min: 4, max: 20)
     |> validate_inclusion(:age, 5..50)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 4)
-    |> validate_inclusion(:role, ~w(admin))
     |> unique_constraint(:email)
+    |> validate_inclusion(:role, @roles)
     |> put_pass_hash()
   end
 
   defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
     change(changeset, password: Bcrypt.hashpwsalt(password))
   end
+
   defp put_pass_hash(changeset), do: changeset
 end

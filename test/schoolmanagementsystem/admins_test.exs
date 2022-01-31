@@ -21,7 +21,13 @@ defmodule Schoolmanagementsystem.AdminsTest do
     end
 
     test "create_admin/1 with valid data creates a admin" do
-      valid_attrs = %{age: 42, email: "some email", name: "some name", password: "some password", role: "some role"}
+      valid_attrs = %{
+        age: 42,
+        email: "some email",
+        name: "some name",
+        password: "some password",
+        role: "some role"
+      }
 
       assert {:ok, %Admin{} = admin} = Admins.create_admin(valid_attrs)
       assert admin.age == 42
@@ -37,7 +43,14 @@ defmodule Schoolmanagementsystem.AdminsTest do
 
     test "update_admin/2 with valid data updates the admin" do
       admin = admin_fixture()
-      update_attrs = %{age: 43, email: "some updated email", name: "some updated name", password: "some updated password", role: "some updated role"}
+
+      update_attrs = %{
+        age: 43,
+        email: "some updated email",
+        name: "some updated name",
+        password: "some updated password",
+        role: "some updated role"
+      }
 
       assert {:ok, %Admin{} = admin} = Admins.update_admin(admin, update_attrs)
       assert admin.age == 43

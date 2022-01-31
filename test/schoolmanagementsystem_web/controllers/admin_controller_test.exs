@@ -3,8 +3,20 @@ defmodule SchoolmanagementsystemWeb.AdminControllerTest do
 
   import Schoolmanagementsystem.AdminsFixtures
 
-  @create_attrs %{age: 42, email: "some email", name: "some name", password: "some password", role: "some role"}
-  @update_attrs %{age: 43, email: "some updated email", name: "some updated name", password: "some updated password", role: "some updated role"}
+  @create_attrs %{
+    age: 42,
+    email: "some email",
+    name: "some name",
+    password: "some password",
+    role: "some role"
+  }
+  @update_attrs %{
+    age: 43,
+    email: "some updated email",
+    name: "some updated name",
+    password: "some updated password",
+    role: "some updated role"
+  }
   @invalid_attrs %{age: nil, email: nil, name: nil, password: nil, role: nil}
 
   describe "index" do
